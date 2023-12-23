@@ -1,4 +1,4 @@
-Food Villa App Layout
+******\*\*\*******Food Villa App Layout****\*\*\*****
 
 /\*\*
 
@@ -15,3 +15,10 @@ Food Villa App Layout
 - -Address
 - -Contact
   \*/
+
+****\*\*\***** React Hooks **********\***********
+(Normal JS Utility Functions)
+to use hooks we import them from react as named import
+
+- useState() -> Super powerful state variables in react
+- useEffect()
