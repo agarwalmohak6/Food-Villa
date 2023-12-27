@@ -5,7 +5,7 @@ import Shimmer from "./Shimmer";
 // Not using key (not acceptable) <<< index as key <<<<<<<<<<<<<<< unique id as key (best practice)
 const Body = () => {
   // Local state variable - useState
-  // Whenever state variables update, react triggers a reconciliation cycle(rendering of component)
+  // Whenever state variables update, react triggers a reconciliation cycle (rendering of component)
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
