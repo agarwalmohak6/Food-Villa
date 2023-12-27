@@ -5,7 +5,9 @@ import Shimmer from "./Shimmer";
 // Not using key (not acceptable) <<< index as key <<<<<<<<<<<<<<< unique id as key (best practice)
 const Body = () => {
   // Local state variable - useState
+  // Whenever state variables update, react triggers a reconciliation cycle(rendering of component)
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     getRestaurants();
@@ -40,9 +42,17 @@ const Body = () => {
           <input
             type="text"
             className="search-input"
-            placeholder="Search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           ></input>
-          <button className="search-btn">Search</button>
+          <button
+            className="search-btn"
+            onClick={() => {
+              alert("Searched");
+            }}
+          >
+            Search
+          </button>
         </div>
         <button
           className="filter-btn"
