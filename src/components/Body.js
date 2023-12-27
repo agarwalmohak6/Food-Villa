@@ -48,8 +48,12 @@ const Body = () => {
           <button
             className="search-btn"
             onClick={() => {
-              alert("Searched");
+              const filteredRestaurant = listOfRestaurant.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setListOfRestaurant(filteredRestaurant);
             }}
+            disabled={!searchText}
           >
             Search
           </button>
