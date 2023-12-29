@@ -7,8 +7,12 @@ const Body = () => {
   // Local state variable - useState
   // Whenever state variables update, react triggers a reconciliation cycle (rendering of component)
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  // if no dependency array, useEffect is called on every render
+  // if empty dependency array =[] => then useEffect is called only once on first render
+  // if dependency array = [searchText] => then useEffect is called only when searchText changes
   useEffect(() => {
     getRestaurants();
   }, []);
@@ -31,6 +35,7 @@ const Body = () => {
     }
     const resData = await checkJsonData(json);
     setListOfRestaurant(resData);
+    setFilteredRestaurant(resData);
   }
   // Conditional Rendering
   return listOfRestaurant.length === 0 ? (
@@ -51,7 +56,7 @@ const Body = () => {
               const filteredRestaurant = listOfRestaurant.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setListOfRestaurant(filteredRestaurant);
+              setFilteredRestaurant(filteredRestaurant);
             }}
             disabled={!searchText}
           >
@@ -64,14 +69,14 @@ const Body = () => {
             const filteredList = listOfRestaurant.filter(
               (res) => res.info.avgRating > 4
             );
-            setListOfRestaurant(filteredList);
+            setFilteredRestaurant(filteredList);
           }}
         >
           Top Rated Restaurant
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurant.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
