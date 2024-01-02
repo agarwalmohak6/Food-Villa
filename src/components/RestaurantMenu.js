@@ -39,7 +39,7 @@ const RestaurantMenu = () => {
         </h3>
         <h3>{resInfo?.data?.cards[0]?.card?.card?.info?.avgRating} stars</h3>
         <h3>
-          Rs. {resInfo?.data?.cards[0]?.card?.card?.info?.costForTwo / 100}
+          Rs. {resInfo?.data?.cards[0]?.card?.card?.info?.costForTwo / 100} for two
         </h3>
       </div>
     </div>
