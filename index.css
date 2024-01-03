@@ -90,3 +90,8 @@
     padding: 10px;
     border: 1px solid black;
 }
+.gitData{
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+}
