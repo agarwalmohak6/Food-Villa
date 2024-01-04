@@ -1,23 +1,11 @@
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { swiggy_menu_api_URL, IMG_CDN_URL } from "../utils/constants";
-
+import { IMG_CDN_URL } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  // console.log(resId);
-  const [resInfo, setResInfo] = useState(null);
-
-  useEffect(() => {
-    fetchMenu();
-  }, [resId]); // Include resId as a dependency
-
-  const fetchMenu = async () => {
-    const data = await fetch(swiggy_menu_api_URL + resId);
-    // console.log(data);
-    const json = await data.json();
-    setResInfo(json);
-  };
+  const resInfo = useRestaurantMenu(resId);
 
   return resInfo === null ? (
     <Shimmer />
@@ -39,7 +27,8 @@ const RestaurantMenu = () => {
         </h3>
         <h3>{resInfo?.data?.cards[0]?.card?.card?.info?.avgRating} stars</h3>
         <h3>
-          Rs. {resInfo?.data?.cards[0]?.card?.card?.info?.costForTwo / 100} for two
+          Rs. {resInfo?.data?.cards[0]?.card?.card?.info?.costForTwo / 100} for
+          two
         </h3>
       </div>
     </div>

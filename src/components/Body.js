@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 // Not using key (not acceptable) <<< index as key <<<<<<<<<<<<<<< unique id as key (best practice)
 const Body = () => {
@@ -38,6 +39,11 @@ const Body = () => {
     setListOfRestaurant(resData);
     setFilteredRestaurant(resData);
   }
+
+  if (useOnlineStatus() === false) {
+    return <h1>Offline, please check your internet connection</h1>;
+  }
+
   // Conditional Rendering
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
